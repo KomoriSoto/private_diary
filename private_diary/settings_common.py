@@ -70,10 +70,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'private_diary',
-        'USER': os.environ.get('DB_USER'),
-        # 'USER': 'postgres',
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        # 'PASSWORD': 'password',
+        # 'USER': os.environ.get('DB_USER'),
+        'USER': 'ec2_user',
+        # 'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'PASSWORD': 'password',
         'HOST': '',
         'PORT': '',
     }
