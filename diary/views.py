@@ -97,14 +97,8 @@ class DiaryDeleteView(LoginRequiredMixin, OnlyYouMixin, generic.DeleteView):
         messages.success(self.request, "日記を削除しました。")
         return super().delete(request, *args, **kwargs)
 
-def testFunc:
-    for i in range(10):
-        for j in range(10):
-            for k in range(10):
+def testFunc():
+    for _ in range(10):
+        for _ in range(10):
+            for _ in range(10):
                 print('hello')
-
-def testFunc2:
-    for i in range(10):
-        for j in range(10):
-            for k in range(10):
-                print('hello2')
