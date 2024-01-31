@@ -2,21 +2,12 @@ import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6o$_dt(x!j+k6*av0_v7)z8h3i0aa!7s9eey0%8gxe72jz7gb8'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -27,11 +18,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'diary.apps.DiaryConfig',
     'accounts.apps.AccountsConfig',
+
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+
     'bootstrap5',
 ]
 
@@ -70,16 +64,16 @@ WSGI_APPLICATION = 'private_diary.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # データベース設定
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'private_diary',
-#         'USER': 'postgres',
-#         'PASSWORD': 'password',
-#         'HOST': '',
-#         'PORT': '',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'private_diary',
+        'USER': 'postgres',
+        'PASSWORD': 'password',
+        'HOST': '',
+        'PORT': '',
+    }
+}
 
 
 # Password validation
@@ -124,57 +118,12 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+MEDIA_URL = '/media/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# ロギング設定
-LOGGING = {
-    'version': 1,  # 1固定
-    'disable_existing_loggers': False,
-
-    # ロガーの設定
-    'loggers': {
-        # Djangoが利用するロガー
-        'django': {
-            'handlers': ['console'],
-            'level': 'INFO',
-        },
-        # diaryアプリケーションが利用するロガー
-        'diary': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-        },
-    },
-
-    # ハンドラの設定
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'dev'
-        },
-    },
-
-    # フォーマッタの設定
-    'formatters': {
-        'dev': {
-            'format': '\t'.join([
-                '%(asctime)s',
-                '[%(levelname)s]',
-                '%(pathname)s(Line:%(lineno)d)',
-                '%(message)s'
-            ])
-        },
-    }
-}
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
 
 MESSAGE_TAGS = {
     messages.ERROR: 'alert alert-danger',
@@ -202,7 +151,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_REQUIRED = True
 
 # ログイン/ログアウト後の遷移先を設定
-LOGIN_REDIRECT_URL = 'diary:index'
+LOGIN_REDIRECT_URL = 'diary:diary_list'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 # ログアウトリンクのクリック一発でログアウトする設定
@@ -214,10 +163,8 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 # デフォルトのメール送信元を設定
 DEFAULT_FROM_EMAIL = os.environ.get('FROM_EMAIL')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-
-LOGIN_REDIRECT_URL = 'diary:diary_list'
-
+# バックアップバッチ用
 BACKUP_PATH = 'backup/'
 NUM_SAVED_BACKUP = 30
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

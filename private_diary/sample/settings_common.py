@@ -27,8 +27,6 @@ INSTALLED_APPS = [
     'allauth.account',
 
     'bootstrap5',
-
-    'django_ses',
 ]
 
 MIDDLEWARE = [
@@ -70,9 +68,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'private_diary',
-        # 'USER': os.environ.get('DB_USER'),
-        'USER': 'ec2_user',
-        # 'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'USER': 'postgres',
         'PASSWORD': 'password',
         'HOST': '',
         'PORT': '',

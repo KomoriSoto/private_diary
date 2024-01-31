@@ -44,7 +44,7 @@ class DiaryListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 2
 
     def get_queryset(self):
-        diaries = Diary.objects.filter(user=self.request.user).order_by('-created_at')
+        diaries = Diary.objects.order_by('user__username').reverse().all()
         return diaries
 
 
@@ -96,15 +96,3 @@ class DiaryDeleteView(LoginRequiredMixin, OnlyYouMixin, generic.DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, "日記を削除しました。")
         return super().delete(request, *args, **kwargs)
-
-def testFunc:
-    for i in range(10):
-        for j in range(10):
-            for k in range(10):
-                print('hello')
-
-def testFunc2:
-    for i in range(10):
-        for j in range(10):
-            for k in range(10):
-                print('hello2')

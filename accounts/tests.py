@@ -7,7 +7,7 @@ class TestLogin(LiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.selenium = WebDriver(executable_path='<Chromeドライバ配置場所>')
+        cls.selenium = WebDriver(executable_path='C:/chromedriver.exe')
 
     @classmethod
     def tearDownClass(cls):
@@ -20,9 +20,9 @@ class TestLogin(LiveServerTestCase):
 
         # ログイン
         username_input = self.selenium.find_element_by_name("login")
-        username_input.send_keys('<ユーザー登録済みのメールアドレス>')
+        username_input.send_keys('admin@admin.com')
         password_input = self.selenium.find_element_by_name("password")
-        password_input.send_keys('<ログインパスワード>')
+        password_input.send_keys('password')
         self.selenium.find_element_by_class_name('btn').click()
 
         # ページタイトルの検証

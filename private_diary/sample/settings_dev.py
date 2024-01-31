@@ -2,7 +2,7 @@ from .settings_common import *
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'my_secret_key'
+SECRET_KEY = 'test'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
